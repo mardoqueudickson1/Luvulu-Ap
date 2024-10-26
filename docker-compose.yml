@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: luvulu_api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+    ports:
+      - 4000:4000
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: luvulu_db
+    image: postgres:9.4
+    tty: true
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - luvulu-postgres:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:6.2.13-alpine3.18
+    command: redis-server
+    volumes:
+      - redis:/var/lib/redis
+      - redis-config:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - redis-network
+
+volumes:
+  luvulu-postgres:
+  redis:
+  redis-config:
+
+networks:
+  redis-network:
+    driver: bridge

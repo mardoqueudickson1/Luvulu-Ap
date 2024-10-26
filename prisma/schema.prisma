@@ -1,0 +1,414 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoleType {
+  PATIENT
+  ADMIN
+  DOCTOR
+  SUPERADMIN
+  CLINIC
+}
+model FCMToken{
+  id                String    @id @default(uuid())
+  userId            String
+  token             String
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+}
+
+model User {
+  id                String    @id @default(uuid())
+  name              String
+  email             String
+  password          String
+  nationality       String?
+  Role              RoleType
+  nif               String?
+  phone             String
+  birthday          DateTime?
+  FatherName        String?
+  MotherName        String?
+  type              String?
+  gender            String?
+  BI                String?
+  neigbhod          String
+  city              String
+  municipality      String?
+  avatar            String?
+  addressComplement String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  UserPermission           UserPermission[]
+  Patient                  Patient[]
+  Doctor                   Doctor[]
+  Institution              Institution[]
+  Admin                    Admin[]
+  Rating                   Rating[]
+  ClinicRating             ClinicRating[]
+  PasswordConfirmationCode PasswordConfirmationCode[]
+  FCMToken                 FCMToken[]
+}
+
+model Rating {
+  id           String @id @default(uuid())
+  userId       String
+  doctorId     String
+  appoitmentID String
+  // agendamentoId  String
+  rate         Int
+  comment      String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  doctor     Doctor      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appoitment Appointment @relation(fields: [appoitmentID], references: [id], onDelete: Cascade)
+}
+
+model ClinicRating {
+  id       String @id @default(uuid())
+  userId   String
+  clinicId String
+  rate     Int
+  comment  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  institution Institution @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Services {
+  id   String @id @default(uuid())
+  name String
+
+  description   String
+  price         Float
+  institutionId String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     Boolean  @default(false)
+
+  institution Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+}
+
+model Speciality {
+  id   String @id @default(uuid())
+  name String
+
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   Boolean  @default(false)
+}
+
+enum permissions {
+  READONLY
+  WRITE
+}
+
+model UserPermission {
+  id          String      @id @default(uuid())
+  userId      String
+  permissions permissions
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   Boolean     @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Patient {
+  id     String @id @default(uuid())
+  number Int?
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Appointment   Appointment[]
+  Notification  Notification[]
+  Qrcode        Qrcode[]
+  Favorites     Favorites[]
+  medicalReport MedicalReport[]
+  patientCard   PatientCard[]
+}
+
+enum CardStatus {
+  PENDING
+  ACCEPTED
+  ATIVATED
+  DISNABLE
+}
+
+model PatientCard {
+  id         String     @id @default(uuid())
+  patientId  String
+  clinicId   String
+  qrCode     String
+  cardNumber String     @unique
+  status     CardStatus
+  issuedOn   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model Qrcode {
+  id        String   @id @default(uuid())
+  code      String
+  patientId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model Doctor {
+  id                 String   @id @default(uuid())
+  userId             String
+  specialty          String
+  bio                String
+  registrationNumber Int
+  institutionId      String
+  isOnVacation       Boolean? @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  WeeklySchedule WeeklySchedule[]
+  Consultation   Appointment[]
+  rating         Rating[]
+  institution    DoctorInstitution[]
+  Notification   Notification[]
+  Favorites      Favorites[]
+  medicalReport  MedicalReport[]
+}
+
+model Favorites {
+  id            String  @id @default(uuid())
+  pacientId     String
+  doctorId      String?
+  institutionId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  doctor      Doctor?      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  institution Institution? @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  pacient     Patient      @relation(fields: [pacientId], references: [id], onDelete: Cascade)
+}
+
+model Institution {
+  id              String @id @default(uuid())
+  userId          String
+  clinicLatitude  String
+  cliniclongitude String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Admin          Admin[]
+  Consultation   Appointment[]
+  service        Services[]
+  WeeklySchedule WeeklySchedule[]
+  Doctor         DoctorInstitution[]
+  ClinicRating   ClinicRating[]
+  Notification   Notification[]
+  Favorites      Favorites[]
+  medicalReport  MedicalReport[]
+}
+
+model DoctorInstitution {
+  id            String @id @default(uuid())
+  doctorId      String
+  institutionId String
+
+  Doctor      Doctor      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  institution Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+
+  @@unique([doctorId, institutionId])
+}
+
+model Admin {
+  id            String   @id @default(uuid())
+  userId        String
+  institutionId String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     Boolean  @default(false)
+
+  user        User        @relation(fields: [userId], references: [id])
+  institution Institution @relation(fields: [institutionId], references: [id])
+}
+
+enum AppointmentStatus {
+  PENDING
+  CANCELED
+  CONFIRMED
+  IN_PROGRESS
+  FINESHED
+}
+
+model Appointment {
+  id                 String            @id @default(uuid())
+  patientId          String
+  institutionId      String
+  consultationTypeId String
+  doctorId           String
+  symptomDescription String
+  isUrgent           Boolean?          @default(false)
+  date               DateTime
+  status             AppointmentStatus
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  deletedAt          Boolean           @default(false)
+
+  pacient          Patient          @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  institution      Institution      @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  consultationType ConsultationType @relation(fields: [consultationTypeId], references: [id], onDelete: Cascade)
+  Doctor           Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  medicalHistories MedicalHistory[]
+  medicalReport    MedicalReport[]
+  Rating           Rating[]
+}
+
+model ConsultationType {
+  id           String        @id @default(uuid())
+  description  String
+  name         String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    Boolean       @default(false)
+  Consultation Appointment[]
+}
+
+enum TypeNotification{
+  APPOINTMENT
+  
+}
+model Notification {
+  id             String  @id @default(uuid())
+  content        String
+  doctor_id      String?
+  patient_id     String?
+  institution_id String?
+  read           Boolean @default(false)
+  type           TypeNotification?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  Doctor      Doctor?      @relation(fields: [doctor_id], references: [id], onDelete: Cascade)
+  Patient     Patient?     @relation(fields: [patient_id], references: [id], onDelete: Cascade)
+  Institution Institution? @relation(fields: [institution_id], references: [id], onDelete: Cascade)
+}
+
+enum statusWork {
+  BUSY
+  ON_PAUSE
+  VACATION
+  UNAVAILABLE
+  AVAILABLE
+}
+
+model WeeklySchedule {
+  id                String   @id @default(uuid())
+  doctorId          String
+  institutionId     String
+  dayOfWeek         DateTime
+  startTime         DateTime
+  endTime           DateTime
+  interval          Int
+  dailyWorkingHours Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  doctor      Doctor      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  institution Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+}
+
+model MedicalHistory {
+  id            String      @id @default(uuid())
+  AppointmentId String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deletedAt     Boolean     @default(false)
+  Appointment   Appointment @relation(fields: [AppointmentId], references: [id], onDelete: Cascade)
+}
+
+model PasswordConfirmationCode {
+  id        String   @id @default(uuid())
+  userId    String
+  code      String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model MedicalReport {
+  id            String @id @default(uuid())
+  institutionId String
+  doctorId      String
+  patientId     String
+  AppointmentId String
+
+  medicalEvaluation     String?
+  bloodPressure         String?
+  height                String?
+  weight                String?
+  pulse                 String?
+  temperature           String?
+  otherPhysicalParams   String?
+  diagnosis             String?
+  treatmentPlan         String?
+  recommendations       String[]
+  orientations          String[]
+  observations          String?
+  symptomsDescription   String?
+  additionalObservation String?
+
+  date DateTime @default(now())
+
+  institution Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  doctor      Doctor      @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient     Patient     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  appointment Appointment @relation(fields: [AppointmentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt Boolean  @default(false)
+}

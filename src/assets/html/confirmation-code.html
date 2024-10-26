@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <title>Código de Confirmação - Luvulu</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            width: 100%;
+            font-size: 17px;
+            font-weight: 400;
+            font-family: "poppins", sans-serif;
+            padding-top: 30px;
+        }
+
+        .logosection {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo {
+            width: 60px;
+            margin: 0 auto;
+        }
+
+        .logosection span {
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .logosection p {
+            font-size: 65%;
+            opacity: .7;
+            margin: 0 auto;
+        }
+
+        .bannerSection {
+            margin-top: 20px;
+            background-image: url("https://d375w6nzl58bw0.cloudfront.net/uploads/7a62a163cfaec0128adfb9058bf0001defcf63d9411f93abdba50d65c85bb82a.png");
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .bannerSection h1 {
+            font-size: 270%;
+            text-transform: uppercase;
+        }
+
+        .bannerSection p {
+            opacity: 1;
+        }
+
+        .contextSection {
+            padding-top: 25px;
+            text-align: center;
+        }
+
+        .helloUser {
+            margin-bottom: 2em;
+        }
+
+        .confirmationCode {
+            font-size: 24px;
+            font-weight: bold;
+            color: #25AAE2;
+            margin-top: 2em;
+        }
+
+        .attentiosaly {
+            display: block;
+            margin-top: 2em;
+            font-size: 80%;
+            opacity: .7;
+        }
+
+        .teamLuvulu {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logosection">
+        <img class="logo" src="https://d375w6nzl58bw0.cloudfront.net/uploads/c9164ed52ef69f6fcce1eeb01fffdf2abcbc9a89cbb8b7ee5a93b46834edfe36.png" alt="logo" />
+        <div>
+            <span>luvulu</span>
+            <p>A sua saúde em um clique</p>
+        </div>
+    </div>
+    <div class="bannerSection">
+        <h1>Código de Confirmação</h1>
+        <p> Utilize o seguinte código para confirmar a recuperação da sua senha</p>
+    </div>
+    <div class="contextSection">
+        <h2 class="helloUser">Olá {{name}}</h2>
+        <p class="confirmationCode">{{confirmationCode}}</p>
+        <p class="attentiosaly">Este código é válido por um curto período. Não compartilhe com ninguém.</p>
+        <span class="teamLuvulu">O Team Luvulu</span>
+    </div>
+</body>
+
+</html>

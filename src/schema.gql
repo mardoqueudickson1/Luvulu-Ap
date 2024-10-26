@@ -1,0 +1,1207 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Appointments {
+  consultationTypeId: String!
+  createdAt: DateTime!
+  date: DateTime!
+  deletedAt: Boolean!
+  doctorId: String!
+  id: String
+  institutionId: String!
+  isUrgent: Boolean!
+  patientId: String!
+  status: String
+  symptomDescription: String!
+  updatedAt: DateTime!
+}
+
+input AssociateDoctorInput {
+  doctorId: String!
+  institutionId: String
+}
+
+type ClinicRatings {
+  clinicId: String!
+  comment: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  rate: Float!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type ClinicResponse {
+  clinicLatitude: String!
+  cliniclongitude: String!
+  id: String!
+  user: UserClinic!
+}
+
+input ClinicUpdatePasswordInput {
+  clinicId: String
+  newPassword: String!
+  oldPassword: String!
+}
+
+type Clinics {
+  clinicLatitude: String!
+  cliniclongitude: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type ConsultationTypeResponseClinic {
+  createdAt: DateTime!
+  id: String
+  name: String!
+  updatedAt: DateTime!
+}
+
+type ConsultationTypes {
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  description: String!
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input CreateAppointInput {
+  consultationTypeId: String!
+  date: DateTime!
+  doctorId: String!
+  institutionId: String!
+  isUrgent: Boolean!
+  patientId: String
+  status: String
+  symptomDescription: String!
+}
+
+input CreateClinicInput {
+  BI: String
+  FatherName: String
+  MotherName: String
+  Role: String
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String!
+  clinicLatitude: Float!
+  cliniclongitude: Float!
+  email: String!
+  gender: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+  password: String!
+  phone: String!
+  type: String
+}
+
+input CreateClinicRatingInput {
+  clinicId: String!
+  comment: String
+  rate: Float!
+  userId: String
+}
+
+input CreateConsultatinoTypeInput {
+  description: String
+  name: String!
+}
+
+input CreateDoctorInput {
+  FatherName: String
+  MotherName: String
+  Role: String
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String!
+  email: String!
+  gender: String
+  municipality: String
+  name: String!
+  nationality: String
+  neigbhod: String
+  nif: String!
+  password: String!
+  phone: String!
+}
+
+input CreateDoctorPartial {
+  bio: String!
+  id: String
+  institutionId: String
+  isOnVacation: Boolean
+  registrationNumber: Float
+  specialty: String!
+  userId: String
+}
+
+input CreateFavoriteInput {
+  doctorId: String
+  institutionId: String
+  pacientId: String
+}
+
+input CreateLuvuluCard {
+  cardNumber: String
+  clinicId: String!
+  issuedOn: DateTime
+  patientId: String
+  qrCode: String
+  status: String
+}
+
+input CreateMedicalReport {
+  AppointmentId: String!
+  bloodPressure: String
+  diagnosis: String
+  doctorId: String
+  height: String
+  institutionId: String!
+  medicalEvaluation: String
+  observations: String
+  orientations: [String!]!
+  otherPhysicalParams: String
+  patientId: String!
+  pulse: String
+  recommendations: [String!]!
+  symptomsDescription: String
+  temperature: String
+  treatmentPlan: String
+  weight: String
+}
+
+input CreatePatientInput {
+  BI: String
+  FatherName: String
+  MotherName: String
+  Role: String
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String!
+  email: String!
+  gender: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+  password: String!
+  phone: String!
+}
+
+input CreateRatingInput {
+  appoitmentID: String
+  comment: String
+  doctorId: String!
+  rate: Float!
+  userId: String
+}
+
+input CreateServiceInput {
+  description: String!
+  institutionId: String
+  name: String!
+  price: Float!
+}
+
+input CreateSpecialityInput {
+  description: String!
+  name: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DoctorClinicInfo {
+  birthday: DateTime!
+  city: String!
+  email: String!
+  gender: String
+  id: String!
+  municipality: String!
+  name: String!
+  nationality: String!
+  neigbhod: String!
+  phone: String!
+}
+
+input DoctorFilterOptions {
+  city: String!
+  gender: String!
+  neighbor: String!
+  speciality: String!
+  starts: Float!
+}
+
+type DoctorInfor {
+  avatar: String
+  city: String!
+  id: String
+  municipality: String!
+  name: String!
+  specialty: String
+}
+
+type DoctorInstitutions {
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  doctorId: String!
+  id: String!
+  institutionId: String!
+  message: String
+  updatedAt: DateTime!
+}
+
+type DoctorOutput {
+  bio: String!
+  id: String!
+  user: UserOutput!
+}
+
+type DoctorScheduleOutput {
+  dayOfWeek: Int!
+  doctor: DoctorOutput!
+  hours: [String!]!
+  institution: institutionOutput!
+}
+
+type Doctors {
+  bio: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  institutionId: String!
+  isOnVacation: Boolean!
+  registrationNumber: Float!
+  specialty: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type DoctorsClinicResponse {
+  bio: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String
+  isOnVacation: Boolean!
+  specialty: String!
+  updatedAt: DateTime!
+  user: UserClinicResponse!
+}
+
+type DoctorsReponses {
+  bio: String!
+  id: String
+  isOnVacation: Boolean!
+  specialty: String!
+  user: UsersResponse!
+}
+
+type DoctorsResponse {
+  avatar: String
+  birthday: DateTime!
+  city: String!
+  email: String!
+  gender: String!
+  id: String!
+  municipality: String!
+  name: String!
+  nationality: String!
+  phone: String!
+}
+
+type Favorite {
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  doctorId: String
+  id: String
+  institutionId: String
+  message: String
+  pacientId: String
+  updatedAt: DateTime!
+}
+
+input FilterOptions {
+  city: String!
+  municipality: String!
+  neighbor: String!
+  service: String!
+  starts: Float!
+}
+
+type FindAllPatientResponse {
+  id: String!
+  number: Float!
+  user: User!
+}
+
+type GetMedicalHsitoryByPatientIdOutput {
+  appointment: Appointments!
+  appointmentId: String!
+  doctor: DoctorsResponse!
+  id: String!
+}
+
+type Institution {
+  city: String!
+  id: String!
+  municipality: String!
+  name: String!
+  neigbhod: String!
+}
+
+type InstitutionIResponse {
+  institutions: [InstitutionInformation!]!
+}
+
+type InstitutionInformation {
+  city: String!
+  id: String!
+  municipality: String!
+  name: String!
+  neigbhod: String!
+  service: [String!]!
+}
+
+type InstitutionInformations {
+  avatar: String
+  city: String!
+  id: String
+  municipality: String!
+  name: String!
+}
+
+type InstitutionType {
+  name: [String!]!
+}
+
+type InstitutionTypes {
+  city: String!
+  id: String!
+  municipality: String!
+  name: String!
+}
+
+type InstitutionsReponse {
+  createdAt: DateTime!
+  id: String
+  updatedAt: DateTime!
+  user: UsersResponse!
+}
+
+input LoginInput {
+  email: String!
+  fcmToken: String
+  password: String!
+}
+
+type LoginOutput {
+  expiresIn: Float!
+  token: String!
+  user: Users!
+}
+
+type LuvuluCard {
+  cardNumber: String!
+  clinicId: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  issuedOn: DateTime
+  patientId: String!
+  qrCode: String!
+  status: String!
+  updatedAt: DateTime!
+}
+
+type LuvuluCardResponse {
+  cardNumber: String!
+  id: String!
+  name: String!
+  pacientId: String!
+  qrCode: String!
+  status: String!
+}
+
+type MedicalHistoryEntity {
+  AppointmentId: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  updatedAt: DateTime!
+}
+
+type MedicalReportResponse {
+  additionalObservation: String
+  bloodPressure: String
+  date: DateTime!
+  diagnosis: String
+  doctor: DoctorClinicInfo!
+  height: String
+  id: String!
+  institution: DoctorClinicInfo!
+  isUrgent: Boolean!
+  medicalEvaluation: String
+  observations: String
+  orientations: [String!]!
+  otherPhysicalParams: String
+  pacient: PacientInfo!
+  pulse: String
+  recommendations: [String!]!
+  specialtyArea: String
+  symptomsDescription: String
+  temperature: String
+  treatmentPlan: String
+  weight: String
+}
+
+type MedicalReports {
+  AppointmentId: String!
+  additionalObservation: String
+  bloodPressure: String
+  createdAt: DateTime!
+  date: DateTime!
+  deletedAt: Boolean!
+  diagnosis: String
+  doctorId: String!
+  height: String
+  id: String!
+  institutionId: String!
+  medicalEvaluation: String
+  observations: String
+  orientations: [String!]!
+  otherPhysicalParams: String
+  patientId: String!
+  pulse: String
+  recommendations: [String!]!
+  symptomsDescription: String
+  temperature: String
+  treatmentPlan: String
+  updatedAt: DateTime!
+  weight: String
+}
+
+type Mutation {
+  AssociateDoctor(data: AssociateDoctorInput!): DoctorInstitutions!
+  CancelLuvuluCardRequest(data: UpdateLuvuluCard!): LuvuluCard!
+  ClinicchangeAppointmantStatus(appointmantId: String!, status: String!): Appointments!
+  CreateQrCode: Qrcodes!
+  CreateWeeklySchedule(weekInput: WeeklyScheduleDTO!): WeeklySchedules!
+  Login(data: LoginInput!): LoginOutput!
+  RemoveFavorite(data: RemoveFavorite!): Favorite!
+  UpdateClinicRating(data: updateClinicRating!): ClinicRatings!
+  UpdateConsultationType(data: updateConsultatinoType!): ConsultationTypes!
+  UpdateRating(data: updateRating!): Ratings!
+  acceptLuvuluCardRequest(id: String!, status: String!): LuvuluCard!
+  changeAppointmantStatusByDoctor(appointmantId: String!, status: String!): Appointments!
+  changeClinicPassword(data: ClinicUpdatePasswordInput!): Clinics!
+  changeDoctorPassword(data: changeDoctorPasswordInput!): Doctors!
+  changePatientPassword(data: changePasswordInput!): Patients!
+  createAppointment(appointmentInput: CreateAppointInput!): Appointments!
+  createClinic(data: CreateClinicInput!): Clinics!
+  createClinicRating(data: CreateClinicRatingInput!): ClinicRatings!
+  createConsulatationType(data: CreateConsultatinoTypeInput!): ConsultationTypes!
+  createDoctor(data: CreateDoctorInput!, data2: CreateDoctorPartial!): Doctors!
+  createFCMToken(data: fcmTokenInput!): fcmTokens!
+  createFavorites(data: CreateFavoriteInput!): Favorite!
+  createLuvuluCard(data: CreateLuvuluCard!): LuvuluCard!
+  createMedicalReport(data: CreateMedicalReport!): MedicalReports!
+  createPatient(data: CreatePatientInput!): Patients!
+  createRating(data: CreateRatingInput!): Ratings!
+  createServicesClinic(data: CreateServiceInput!): ServicesClinics!
+  createSpeciality(data: CreateSpecialityInput!): Specialities!
+  desasociateDoctor(data: AssociateDoctorInput!): DoctorInstitutions!
+  patientCancelAppointment(id: String!): Appointments!
+  removeDoctor(id: Int!): Appointments!
+  removeMedicalHistory(id: Int!): MedicalHistoryEntity!
+  removeNotification(id: Int!): Notifications!
+  removePatient(id: Int!): Clinics!
+  removeServicesClinic(id: Int!): ServicesClinics!
+  removeWorkCalendar(id: String!): WeeklyScheduleOutput!
+  updateAppointment(updateAppointment: UpdateAppointmentInput!): Appointments!
+  updateClinic(data: UpdateClinicInput!): Clinics!
+  updateDoctorInfo(data: UpdateDoctorInput!): Doctors!
+  updateNotification(notificationInput: UpdateNotificationInput!): Notifications!
+  updatePatient(data: UpdatePatientInput!): Patients!
+  updateServicesClinic(clinicId: String!, data: UpdateClinicServicesInput!): ServicesClinics!
+  updateWorkCalenar(data: UpdateWeeklySchedule!): WeeklySchedules!
+  uploadImage(image: Upload!): Boolean!
+}
+
+type NearByclinicResponse {
+  averageRating: String!
+  clinicRating: [ResponseClinicRating!]
+  distance: Float
+  distanceInKm: String
+  rating: [ResponseClinicRating!]
+  services: [ServiceClinic!]
+  time: String
+  totalRating: String!
+  user: UserClinic!
+}
+
+type NotificationResponse {
+  content: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  doctor_id: String
+  doctors: userNotifications!
+  id: String!
+  institution_id: String
+  institutions: userNotifications!
+  patient: userNotifications!
+  patient_id: String
+  read: Boolean!
+  updatedAt: DateTime!
+}
+
+type Notifications {
+  content: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  doctor_id: String
+  id: String!
+  institution_id: String
+  patient_id: String
+  read: Boolean!
+  type: String!
+  updatedAt: DateTime!
+}
+
+type PacientInfo {
+  FatherName: String!
+  MotherName: String!
+  birthday: DateTime!
+  city: String!
+  email: String!
+  gender: String!
+  id: String!
+  municipality: String!
+  name: String!
+  nationality: String!
+  neigbhod: String!
+  phone: String!
+}
+
+type PatientProfileOutput {
+  number: Float!
+  pacientCardID: [String!]
+  qrCode: String
+  user: Users!
+}
+
+type PatientReponsesClinic {
+  createdAt: DateTime!
+  id: String
+  number: Float!
+  updatedAt: DateTime!
+  user: UserClinicResponse!
+}
+
+type Patients {
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  number: Float!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type ProfileClinicOutput {
+  user: Users!
+}
+
+type Qrcodes {
+  code: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  id: String!
+  patientId: String!
+  updatedAt: DateTime!
+}
+
+type Query {
+  FindOnePatient(id: String!): ResponsePatientOutput!
+  PatientProfile: PatientProfileOutput!
+  PhotoName(name: String!): String!
+  ProfileClinic: ProfileClinicOutput!
+  RemoveClinicRating(id: String!): ClinicRatings!
+  RemoveConsultationType(id: String!): ConsultationTypes!
+  RemoveRating(id: String!): Ratings!
+  SearchClinic(name: String!, page: Float!): [NearByclinicResponse!]!
+  SearchDoctor(name: String!, page: Float!): [TopResponseAllDoctor!]!
+  doctorProfile: ResponseProfileDoctor!
+  filterClinic(data: FilterOptions!): [NearByclinicResponse!]!
+  filterDoctor(data: DoctorFilterOptions!): [TopResponseAllDoctor!]!
+  findALlSpeciality: [SpecialityResponse!]!
+  findAllAppointment: [Appointments!]!
+  findAllClinic: [ClinicResponse!]!
+  findAllClinicOfDoctor(doctor_id: String!): [InstitutionIResponse!]!
+  findAllClinicRating: [ClinicRatings!]!
+  findAllConsultationType: [ConsultationTypes!]!
+  findAllDoctor: [ResponseAllDoctor!]!
+  findAllDoctorsByClinicID: [ResponseAllDoctor!]!
+  findAllFavorites: [ResponseAllFavotites!]!
+  findAllLuvuluCard: [LuvuluCardResponse!]!
+  findAllNotificationClinicId: [NotificationResponse!]!
+  findAllNotificationDoctorID: [NotificationResponse!]!
+  findAllNotificationPatientId: [NotificationResponse!]!
+  findAllPatient: [FindAllPatientResponse!]!
+  findAllRating: [Ratings!]!
+  findAllServicesByClinicId(clinicId: String!): [ServicesClinics!]!
+  findAllTopClinicRated: [TopResponseAllClinic!]!
+  findAllTopRated: [TopResponseAllDoctor!]!
+  findAllWeeklySchedule: [WeeklySchedules!]!
+  findAppointmentByClinicId: [ResponseAllAppointPatient!]!
+  findAppointmentByDate(date: String!, doctorId: String!): Appointments!
+  findAppointmentByDoctorId: [ResponseAllAppointPatient!]!
+  findAppointmentByPatientId: [ResponseAllAppointPatient!]!
+  findClinicNearBy(pacientLatitude: Float!, pacientlongitude: Float!): [NearByclinicResponse!]!
+  findMedicalHistoryByDoctorId(id: String!): MedicalHistoryEntity!
+  findOneAppointment(id: String!): ResponseAllAppointPatient!
+  findOneClinicId(id: String!): ResponseClinic!
+  findOneClinicRating(id: String!): ClinicRatings!
+  findOneConsultationType(id: String!): ConsultationTypes!
+  findOneDoctor(id: String!): ResponseDoctor!
+  findOneLuvuluCard(id: String!): LuvuluCardResponse!
+  findOneMedicalHistory(id: String!): [GetMedicalHsitoryByPatientIdOutput!]!
+  findOneMedicalHistoryPUB(id: String!): [GetMedicalHsitoryByPatientIdOutput!]!
+  findOneMedicalReport(id: String!): MedicalReportResponse!
+  findOneNotification(id: String!): Notifications!
+  findOneRatedClinic(id: String!): TopResponseAllClinic!
+  findOneRatedDoctor(id: String!): TopResponseAllDoctor!
+  findOneRating(id: String!): Ratings!
+  findOneWeeklySchedule(id: String!): [WeeklySchedules!]!
+  findWeeklyScheduleByClinicId(id: String!): [WeeklySchedules!]!
+  getDoctorAppointmentsPatients: [ResponseAllAppointPatient!]!
+  getScheduleById(id: String!): DoctorScheduleOutput!
+}
+
+type Ratings {
+  appoitmentID: String
+  comment: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  doctorId: String!
+  id: String!
+  rate: Float!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input RemoveFavorite {
+  doctorId: String
+  id: String
+  institutionId: String
+  pacientId: String
+}
+
+type ResponseAllAppointClinic {
+  consultationType: ConsultationTypeResponseClinic!
+  createdAt: DateTime!
+  date: DateTime!
+  doctor: DoctorsClinicResponse!
+  id: String
+  isUrgent: Boolean!
+  patient: PatientReponsesClinic!
+  status: String
+  symptomDescription: String!
+  updatedAt: DateTime!
+}
+
+type ResponseAllAppointPatient {
+  consultationType: String
+  createdAt: DateTime!
+  date: DateTime!
+  description: String
+  doctor: DoctorsReponses!
+  doctorId: String
+  id: String
+  institution: InstitutionsReponse!
+  institutionId: String
+  isRated: Boolean!
+  isReported: Boolean!
+  isUrgent: Boolean!
+  medicalReportId: [String!]!
+  pacient: UsersResponse!
+  patientId: String
+  status: String
+  symptomDescription: String!
+  updatedAt: DateTime!
+}
+
+type ResponseAllDoctor {
+  bio: String!
+  id: String!
+  institutions: [InstitutionInformation!]!
+  registrationNumber: Float!
+  specialty: String!
+  user: UserInformation!
+}
+
+type ResponseAllFavotites {
+  doctors: [DoctorInfor!]!
+  institutions: [InstitutionInformations!]!
+}
+
+type ResponseClinic {
+  id: String!
+  user: Users!
+}
+
+type ResponseClinicRating {
+  clinicId: String!
+  comment: String!
+  id: String!
+  rate: Float!
+  userId: String!
+}
+
+type ResponseDoctor {
+  bio: String!
+  id: String!
+  institution: InstitutionType!
+  institutionId: String!
+  registrationNumber: Float!
+  specialty: String!
+  user: Users!
+}
+
+type ResponsePatientOutput {
+  id: String!
+  number: Float!
+  user: Users!
+}
+
+type ResponseProfileDoctor {
+  bio: String!
+  id: String!
+  registrationNumber: Float!
+  specialty: String!
+  user: Users!
+}
+
+type ResponseRating {
+  comment: String!
+  doctorId: String!
+  id: String!
+  rate: Float!
+  user: UserInfo!
+  userId: String!
+}
+
+type ServiceClinic {
+  description: String!
+  name: String!
+}
+
+type ServicesClinics {
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  description: String!
+  id: String!
+  institutionId: String!
+  name: String!
+  price: Float!
+  updatedAt: DateTime!
+}
+
+type Specialities {
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  description: String!
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type SpecialityResponse {
+  description: String!
+  name: String!
+}
+
+type TopResponseAllClinic {
+  averageRating: String
+  doctorRated: [Float!]!
+  isFavorited: Boolean
+  pacientsCared: Float!
+  services: [ServiceClinic!]
+  totalRating: String
+  user: UserInfos!
+}
+
+type TopResponseAllDoctor {
+  averageRating: String!
+  bio: String!
+  institutions: [Institution!]!
+  isFavorited: Boolean
+  pacientCared: String!
+  rating: [ResponseRating!]!
+  registrationNumber: Float!
+  specialty: String!
+  totalRating: String!
+  user: UserInfo!
+}
+
+input UpdateAppointmentInput {
+  consultationTypeId: String
+  date: DateTime
+  doctorId: String
+  id: String!
+  institutionId: String
+  isUrgent: Boolean
+  patientId: String
+  status: String
+  symptomDescription: String
+}
+
+input UpdateClinicInput {
+  BI: String
+  FatherName: String
+  MotherName: String
+  Role: String
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String
+  clinicLatitude: Float
+  cliniclongitude: Float
+  email: String
+  gender: String
+  id: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+  password: String
+  phone: String
+  type: String
+}
+
+input UpdateClinicServicesInput {
+  description: String
+  id: String!
+  institutionId: String
+  name: String
+  price: Float
+}
+
+input UpdateDoctorInput {
+  FatherName: String
+  MotherName: String
+  addressComplement: String
+  bio: String
+  birthday: DateTime
+  city: String
+  email: String
+  gender: String
+  id: String
+  isOnVacation: Boolean
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  phone: String
+  specialty: String
+}
+
+input UpdateLuvuluCard {
+  cardNumber: String
+  clinicId: String
+  id: String!
+  issuedOn: DateTime
+  patientId: String
+  qrCode: String
+  status: String
+}
+
+input UpdateNotificationInput {
+  content: String
+  doctor_id: String
+  id: String!
+  institution_id: String
+  patient_id: String
+  read: Boolean
+  type: String
+}
+
+input UpdatePatientInput {
+  BI: String
+  FatherName: String
+  MotherName: String
+  Role: String
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String
+  email: String
+  gender: String
+  id: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+  password: String
+  phone: String
+}
+
+input UpdateWeeklySchedule {
+  dailyWorkingHours: Float
+  dayOfWeek: DateTime
+  doctorId: String
+  endTime: DateTime
+  id: String!
+  institutionId: String
+  interval: Float
+  startTime: DateTime
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  FatherName: String!
+  MotherName: String!
+  Role: String!
+  addressComplement: String!
+  birthday: DateTime!
+  city: String!
+  email: String!
+  gender: String!
+  municipality: String!
+  name: String!
+  nationality: String!
+  neigbhod: String!
+  nif: String!
+  phone: String!
+  type: String!
+}
+
+type UserClinic {
+  Role: String!
+  addressComplement: String!
+  avatar: String
+  city: String!
+  email: String!
+  id: String!
+  municipality: String!
+  name: String!
+  nationality: String!
+  neigbhod: String!
+  nif: String!
+  phone: String!
+}
+
+type UserClinicResponse {
+  id: String!
+  name: String!
+}
+
+type UserInfo {
+  Role: String
+  addressComplement: String
+  avatar: String
+  city: String
+  email: String
+  id: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+  phone: String
+}
+
+type UserInformation {
+  FatherName: String!
+  MotherName: String!
+  Role: String!
+  addressComplement: String!
+  avatar: String
+  birthday: DateTime!
+  city: String!
+  email: String!
+  gender: String!
+  id: String!
+  municipality: String!
+  name: String!
+  nationality: String!
+  neigbhod: String!
+  nif: String!
+  phone: String!
+}
+
+type UserInfos {
+  Role: String
+  addressComplement: String
+  avatar: String
+  city: String
+  email: String
+  id: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+  phone: String
+}
+
+type UserOutput {
+  id: String!
+  name: String!
+}
+
+type Users {
+  BI: String
+  FatherName: String
+  MotherName: String
+  Role: String!
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String!
+  createdAt: DateTime!
+  deletedAt: Boolean!
+  email: String!
+  gender: String
+  id: String!
+  municipality: String
+  name: String!
+  nationality: String
+  neigbhod: String!
+  nif: String
+  password: String!
+  phone: String!
+  type: String
+  updatedAt: DateTime!
+}
+
+type UsersResponse {
+  FatherName: String
+  MotherName: String
+  addressComplement: String
+  avatar: String
+  birthday: DateTime
+  city: String!
+  email: String!
+  gender: String
+  id: String
+  municipality: String
+  name: String!
+  neigbhod: String
+  phone: String
+}
+
+input WeeklyScheduleDTO {
+  dailyWorkingHours: Float!
+  dayOfWeek: DateTime!
+  doctorId: String
+  endTime: DateTime!
+  institutionId: String!
+  interval: Float!
+  startTime: DateTime!
+}
+
+type WeeklyScheduleOutput {
+  dayOfWeek: String!
+  doctorId: String!
+  endTime: String!
+  institutionId: String!
+  interval: Float!
+  startTime: String!
+}
+
+type WeeklySchedules {
+  createdAt: DateTime!
+  dailyWorkingHours: Float!
+  dayOfWeek: DateTime!
+  doctorId: String!
+  endTime: DateTime!
+  id: String!
+  institutionId: String!
+  interval: Float!
+  startTime: DateTime!
+  updatedAt: DateTime!
+}
+
+input changeDoctorPasswordInput {
+  doctorId: String
+  newPassword: String!
+  oldPassword: String!
+}
+
+input changePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+  patientId: String
+}
+
+input fcmTokenInput {
+  token: String!
+  userId: String
+}
+
+type fcmTokens {
+  id: String!
+  token: String!
+  userId: String!
+}
+
+type institutionOutput {
+  id: String!
+  user: UserOutput!
+}
+
+input updateClinicRating {
+  clinicId: String
+  comment: String
+  id: String
+  rate: Float
+  userId: String
+}
+
+input updateConsultatinoType {
+  description: String
+  id: String!
+  name: String
+}
+
+input updateRating {
+  appoitmentID: String
+  comment: String
+  doctorId: String
+  id: String
+  rate: Float
+  userId: String
+}
+
+type userNotifications {
+  FatherName: String
+  MotherName: String
+  avatar: String
+  city: String
+  email: String
+  id: String
+  municipality: String
+  name: String
+  nationality: String
+  neigbhod: String
+  nif: String
+}
