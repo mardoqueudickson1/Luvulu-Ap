@@ -1,0 +1,1 @@
+{"version":3,"file":"producer.js","sourceRoot":"","sources":["../../../src/modules/RestApi/producer.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;AAAA,2CAA4C;AAE5C,uCAA2C;AAGpC,IAAM,YAAY,GAAlB,MAAM,YAAY;IACvB,YAA8C,UAAiB;QAAjB,eAAU,GAAV,UAAU,CAAO;IAAG,CAAC;CACpE,CAAA;AAFY,oCAAY;uBAAZ,YAAY;IADxB,IAAA,mBAAU,GAAE;IAEE,WAAA,IAAA,kBAAW,EAAC,WAAW,CAAC,CAAA;;GAD1B,YAAY,CAExB"}

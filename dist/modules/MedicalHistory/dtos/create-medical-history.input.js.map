@@ -1,0 +1,1 @@
+{"version":3,"file":"create-medical-history.input.js","sourceRoot":"","sources":["../../../../src/modules/MedicalHistory/dtos/create-medical-history.input.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAAmD;AAG5C,IAAM,yBAAyB,GAA/B,MAAM,yBAAyB;CAGrC,CAAA;AAHY,8DAAyB;AAEpC;IADC,IAAA,eAAK,GAAE;;gEACc;oCAFX,yBAAyB;IADrC,IAAA,mBAAS,GAAE;GACC,yBAAyB,CAGrC"}

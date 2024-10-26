@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ 
+    <title>Bem-vindo à Luvulu</title>
+    
+<style>
+      
+      @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: "poppins", sans-serif;
+}
+
+body {
+    padding-top: 30px;
+}
+
+
+/*===================Headings==================*/
+
+h1 {
+    font-size: 270%;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 105%;
+    font-weight: bold;
+}
+
+/*===================Paragraphs==================*/
+p {
+    opacity: .7;
+    margin: 0 auto;
+}
+
+
+
+.logosection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logosection .logo {
+    width: 60px;
+    margin: 0 auto;
+}
+
+.logosection div {
+    text-align: center;
+}
+
+.logosection span {
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.logosection p {
+    font-size: 65%;
+}
+
+
+.bannerSection {
+    margin-top: 20px;
+    background-image: url("https://d375w6nzl58bw0.cloudfront.net/uploads/7a62a163cfaec0128adfb9058bf0001defcf63d9411f93abdba50d65c85bb82a.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff
+}
+
+.bannerSection p {
+    opacity: 1;
+}
+
+/*=============contextSection=========*/
+
+.contextSection {
+    padding-top: 25px;
+    text-align: center;
+}
+
+.helloUser {
+    margin-bottom: 2em;
+}
+
+.registeredSuccessefully { 
+    opacity: 1;
+}
+
+.registeredSuccessefully span {
+    font-weight: bold;
+    color: #25AAE2;
+}
+
+.navigateLuvulu {
+    font-weight: bold;
+    margin-top: 1.5em;
+    opacity: 1;
+    width: 20%;
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.thingsList:first-child {
+    margin-top: 2em;
+}
+
+.thingsList {
+    border: 4px solid #25AAE2;
+    border-radius: 15px;
+    padding: 1em;
+    width: 833px;
+    margin: 0 auto;
+    margin-bottom: 2em;
+}
+
+.thingsItem{
+    text-align: justify;
+    width: 100%;
+}
+
+.thingsItem{
+    text-align: justify;
+    width: 100%;
+}
+
+.thingsItem p{
+    opacity: 1;
+}
+.thingsItem span {
+    font-weight: bold;
+    opacity: 1;
+}
+
+.emgaged {
+    width: 833px;
+}
+
+.start {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+.thankYou {
+    margin-top: 2em;
+    font-size: 90%;
+    width: 30%;
+}
+
+.attentiosaly {
+    display: block;
+    margin-top: 2em;
+    font-size: 80%;
+    opacity: .7;
+}
+
+.teamLuvulu {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+    </style>
+</head>
+<body>
+    <div class="logosection">
+        <img class="logo" src="https://d375w6nzl58bw0.cloudfront.net/uploads/c9164ed52ef69f6fcce1eeb01fffdf2abcbc9a89cbb8b7ee5a93b46834edfe36.png" alt="logo"/>
+        <div>
+            <span>luvulu</span>
+            <p>A sua saúde em um clique</p>
+        </div>
+    </div>
+    <div class="bannerSection">
+       <h1>Bem-vindo à Luvulu</h1>
+       <p> A sua solução completa para cuidados de saúde personalizados</p>
+    </div>
+    <div class="contextSection">
+        <h2 class="helloUser">Olá {{name}}</h2>
+        <p class="registeredSuccessefully">Seu cadastro foi realizado com sucesso com o email <span>{{email}}</span>
+        </p>
+        <p class="acessAccount">Para acessar o seu perfil, abra a aplicação, digite seu e-mail ou número de telefone e senha cadastrado</p>
+        <p class="navigateLuvulu">Navegar no Luvulu é fácil e intuitivo. Aqui estão algumas coisas que você pode fazer:</p>
+        <div class="thingsList">
+            <div class="thingsItem"><p><span>Agendar Consultas:</span> Marque consultas com médicos de confiança em minutos.</p></div>
+        </div>
+        <div class="thingsList">
+            <div class="thingsItem"><p><span>Gerenciar sua Saúde:</span> Acompanhe seu histórico de consultas, exames e receitas médicas.</p></div>
+        </div>
+        <div class="thingsList">
+            <div class="thingsItem"><p><span>Conectar com Médicos Especializados:</span> Encontre especialistas em sua área de preocupação.</p></div>
+        </div>
+        <div class="thingsList">
+            <div class="thingsItem"><p><span>Receber Atendimento de Qualidade:</span> Receba atendimento médico de qualidade no conforto de sua casa.</p></div>
+        </div>
+        <p class="emgaged">Estamos comprometidos em tornar sua jornada de saúde mais simples e acessível. Se você tiver alguma dúvida ou precisar de assistência, nossa equipe de suporte está pronta para ajudar.</p>
+        <h2 class="start">Comece agora mesmo e cuide da sua saúde de forma mais inteligente com o Luvulo!</h2>
+        <p class="thankYou">Obrigado por escolher o Luvulo. Estamos ansiosos para acompanhá-lo em sua jornada de saúde.</p>
+        <span class="attentiosaly">Atensiosamente</span>
+        <span class="teamLuvulu">O Team Luvulu</span>
+    </div>
+</body>
+</html>
